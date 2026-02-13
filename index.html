@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEBANGSHU | Software Developer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-yellow': '#FBFF48',
+                        'neo-pink': '#FF70A6',
+                        'neo-blue': '#3B82F6',
+                        'neo-green': '#33FF57',
+                        'neo-purple': '#A855F7',
+                        'neo-orange': '#FF9F1C',
+                        'neo-red': '#FF2A2A',
+                        'neo-white': '#FFFDF5',
+                        'neo-black': '#121212',
+                    },
+                    fontFamily: {
+                        'display': ['"Space Grotesk"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'hard': '4px 4px 0px 0px #000',
+                        'hard-sm': '2px 2px 0px 0px #000',
+                        'hard-hover': '0px 0px 0px 0px #000',
+                        'hard-xl': '8px 8px 0px 0px #000',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFDF5;
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 40px 40px;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            pointer-events: none;
+            position: fixed;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Glitch Effect */
+        .glitch-hover:hover {
+            animation: glitch-anim 0.3s infinite;
+            color: #FF2A2A;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                transform: translate(0)
+            }
+
+            20% {
+                transform: translate(-2px, 2px)
+            }
+
+            40% {
+                transform: translate(-2px, -2px)
+            }
+
+            60% {
+                transform: translate(2px, 2px)
+            }
+
+            80% {
+                transform: translate(2px, -2px)
+            }
+
+            100% {
+                transform: translate(0)
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-stroke-black {
+            -webkit-text-stroke: 2px black;
+            color: transparent;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFFDF5;
+            border-left: 2px solid black;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6;
+        }
+    </style>
+</head>
+
+<body class="text-neo-black font-display selection:bg-neo-black selection:text-neo-yellow">
+
+    <div id="cursor" class="w-6 h-6 bg-white rounded-full border-2 border-black hidden lg:block"></div>
+    <div class="fixed top-0 left-0 h-2 bg-neo-blue z-[60] border-b-2 border-black" id="progressBar" style="width: 0%">
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4 pointer-events-none">
+        <div class="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
+            <a href="#"
+                class="bg-neo-white border-2 border-black px-4 py-1 text-xl font-black shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-hard-hover transition-all cursor-hover">
+                DEBANGSHU<span class="text-neo-blue">.DEV</span>
+            </a>
+            <div class="hidden md:flex gap-4 bg-white border-2 border-black p-2 shadow-hard">
+                <a href="#about"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/STATS</a>
+                <a href="#skills"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/STACK</a>
+                <a href="#coding-stats"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/CODE</a>
+                <a href="#projects"
+                    class="px-3 py-1 font-mono font-bold text-sm hover:bg-black hover:text-white transition-colors cursor-hover">/WORK</a>
+                <a href="#contact"
+                    class="px-3 py-1 font-mono font-bold text-sm bg-neo-yellow border border-black hover:bg-neo-pink transition-colors cursor-hover">CONNECT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section
+        class="min-h-screen flex flex-col justify-center items-center px-4 pt-20 relative border-b-4 border-black bg-neo-white">
+        <div
+            class="absolute top-1/3 left-[5%] w-16 h-16 bg-neo-green border-4 border-black shadow-hard animate-bounce hidden lg:flex items-center justify-center font-black text-xl rotate-12">
+            JS</div>
+        <div
+            class="absolute bottom-1/3 right-[10%] w-20 h-20 bg-neo-purple rounded-full border-4 border-black shadow-hard hidden lg:flex items-center justify-center font-black text-xl text-white animate-pulse">
+            AI</div>
+
+        <div class="relative z-10 text-center max-w-6xl">
+            <div class="inline-block bg-white border-2 border-black px-4 py-1 mb-6 shadow-hard rotate-[-2deg] reveal">
+                <span class="font-mono font-bold text-neo-blue bg-black px-2 mr-2">●</span>
+                <span class="font-mono font-bold">ACADEMIC & RESEARCH SECRETARY @ IEEE RAS</span>
+            </div>
+
+            <h1 class="text-[11vw] md:text-[8vw] leading-[0.8] font-black uppercase tracking-tighter mb-6 reveal">
+                SOFTWARE<br>
+                <span class="text-stroke-black drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">DEVELOPER</span>
+            </h1>
+
+            <p
+                class="font-mono text-lg md:text-xl max-w-3xl mx-auto mb-10 bg-neo-yellow border-2 border-black p-4 shadow-hard reveal rotate-1">
+                Building scalable SaaS platforms and autonomous systems.<br>
+                <b>Blending Full Stack Architecture with Mechanical Precision.</b>
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center gap-6 reveal">
+                <a href="#projects"
+                    class="bg-black text-white border-2 border-black px-10 py-5 text-xl font-bold shadow-hard hover:bg-neo-green hover:text-black hover:translate-x-1 hover:translate-y-1 hover:shadow-hard-hover transition-all cursor-hover">
+                    VIEW PROJECTS
+                </a>
+                <a href="https://drive.google.com/file/d/1e1MzIVPG6PwfvgF3dGZ45pXpwfdEl92T/view?usp=sharing"
+                    class="bg-white text-black border-2 border-black px-10 py-5 text-xl font-bold shadow-hard hover:bg-neo-blue hover:text-white hover:translate-x-1 hover:translate-y-1 hover:shadow-hard-hover transition-all cursor-hover flex items-center justify-center gap-2">
+                    <i class="ri-file-download-line"></i> DOWNLOAD CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="border-b-4 border-black bg-neo-blue py-4 relative z-20">
+        <div class="marquee-container font-mono font-bold text-2xl text-white">
+            <div class="marquee-content">
+                /// SOFTWARE DEVELOPER /// APP DEVELOPMENT ///ROBOTICS RESEARCH /// NIT SILCHAR /// FLUTTER /// PYTHON
+                /// FINALIST @ ChEMATHON 2026 /// SIH 2025
+                SELECTED /// OPEN FOR WORK /// FULL STACK /// UI/UX DESIGN ///
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS & ABOUT -->
+    <section id="about" class="py-24 px-4 max-w-7xl mx-auto border-x-4 border-black bg-white my-12 shadow-hard-xl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-4 reveal">
+                <div class="aspect-square bg-gray-200 border-4 border-black relative shadow-hard overflow-hidden group">
+                    <!-- Avatar Image -->
+                    <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Debangshu&backgroundColor=ffdfbf"
+                        alt="Debangshu"
+                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    <span
+                        class="absolute top-2 left-2 bg-neo-red text-white px-2 font-mono text-xs border border-black z-10">PLAYER_01.jpg</span>
+
+                    <!-- Floating Badge -->
+                    <div
+                        class="absolute -bottom-4 -right-4 bg-neo-blue border-2 border-black px-4 py-2 font-black rotate-[-5deg] shadow-hard text-white transform group-hover:rotate-0 transition-transform">
+                        IEEE SEC
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-8 flex flex-col justify-center reveal">
+                <h2 class="text-6xl font-black uppercase mb-6">Player Stats</h2>
+
+                <div
+                    class="grid grid-cols-2 gap-4 font-mono text-sm border-2 border-black bg-gray-50 p-6 shadow-hard mb-8">
+                    <div class="border-b border-gray-300 pb-2">
+                        <span class="font-bold text-gray-500 block text-xs">EDUCATION</span>
+                        B.Tech Mechanical (CGPA 8.22)
+                    </div>
+                    <div class="border-b border-gray-300 pb-2">
+                        <span class="font-bold text-gray-500 block text-xs">INSTITUTE</span>
+                        NIT Silchar (2024-2028)
+                    </div>
+                    <div class="border-b border-gray-300 pb-2">
+                        <span class="font-bold text-gray-500 block text-xs">DESIGNATION</span>
+                        Academic & Research Secretary, IEEE RAS
+                    </div>
+                    <div class="border-b border-gray-300 pb-2">
+                        <span class="font-bold text-gray-500 block text-xs">STATUS</span>
+                        Open for Internships
+                    </div>
+                </div>
+
+                <p class="font-mono text-lg leading-relaxed mb-6">
+                    I am <span class="bg-neo-yellow px-1 border border-black font-bold">Debangshu Mounas</span>.
+                    Currently serving as the <b>Academic & Project Secretary at IEEE RAS</b>. I specialize in building
+                    production-grade mobile apps and integrating AI into robotics.
+                </p>
+
+                <div class="flex gap-4">
+                    <div class="bg-neo-black text-white px-4 py-2 font-mono text-sm border-2 border-transparent">
+                        <i class="ri-map-pin-line"></i> SILCHAR, INDIA
+                    </div>
+                    <div class="bg-neo-green text-black px-4 py-2 font-mono text-sm border-2 border-black">
+                        <i class="ri-checkbox-circle-line"></i> OPEN TO WORK
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH ARSENAL -->
+    <section id="skills" class="py-24 px-4 bg-neo-black text-white border-y-4 border-black relative overflow-hidden">
+        <!-- Background Decor -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-6xl font-black uppercase mb-16 text-white text-stroke-white drop-shadow-[4px_4px_0_#000]">
+                TECH_ARSENAL
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- FULL STACK -->
+                <div
+                    class="border-4 border-white bg-black p-6 shadow-[8px_8px_0_#FFF] reveal hover:-translate-y-2 transition-transform group">
+                    <div class="bg-neo-blue border-2 border-white p-2 font-black text-white text-center mb-6">
+                        /// CORE & CLOUD
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">Python</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">Django</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">FAST
+                            API</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">HTML</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">Javascript</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">React.js</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">PostgreSQL</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">AWS</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-blue hover:text-white transition-colors cursor-hover bg-white text-black">Docker</span>
+
+                    </div>
+                </div>
+
+                <!-- MOBILE -->
+                <div
+                    class="border-4 border-white bg-black p-6 shadow-[8px_8px_0_#FFF] reveal hover:-translate-y-2 transition-transform group">
+                    <div class="bg-neo-pink border-2 border-white p-2 font-black text-white text-center mb-6">
+                        /// MOBILE & UI/UX
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Flutter</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Dart</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Provider</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Riverpod</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Figma</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Firebase</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-pink hover:text-white transition-colors cursor-hover bg-white text-black">Supabase</span>
+                    </div>
+                </div>
+
+                <!-- ROBOTICS -->
+                <div
+                    class="border-4 border-white bg-black p-6 shadow-[8px_8px_0_#FFF] reveal hover:-translate-y-2 transition-transform group">
+                    <div class="bg-neo-orange border-2 border-white p-2 font-black text-white text-center mb-6">
+                        /// ROBOTICS
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">ROS</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">Gazebo</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">OpenCV</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">Arduino</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">ESP32</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">SolidWorks</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">Fusion
+                            360</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">Altium
+                            Designer</span>
+                        <span
+                            class="border-2 border-white px-3 py-1 font-mono font-bold hover:bg-neo-orange hover:text-white transition-colors cursor-hover bg-white text-black">Mission
+                            Planner</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE LOG -->
+    <section id="experience" class="py-24 bg-neo-white text-black border-b-4 border-black">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2
+                class="text-5xl md:text-7xl font-black uppercase mb-16 text-center text-stroke-black drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                CAREER<span class="text-neo-pink">_LOGS</span>
+            </h2>
+
+            <div class="relative border-l-4 border-black ml-4 md:ml-10 space-y-12">
+
+                <!-- Role 1: Grepin -->
+                <div class="reveal relative pl-8 md:pl-16">
+                    <!-- Dot -->
+                    <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-green border-4 border-black rounded-full">
+                    </div>
+
+                    <!-- Card -->
+                    <div
+                        class="bg-white text-black border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all cursor-hover group">
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-black pb-4 mb-4">
+                            <h3 class="text-3xl font-black uppercase">Flutter Developer</h3>
+                            <span
+                                class="font-mono font-bold bg-black text-white px-3 py-1 transform rotate-2 shadow-hard-sm">JAN
+                                2026 - PRESENT</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="ri-building-4-line text-xl"></i>
+                            <p class="font-mono text-xl font-bold uppercase text-neo-green bg-black px-2 inline-block">@
+                                GREPIN (Gurgaon)</p>
+                        </div>
+                        <ul class="list-disc list-inside font-mono text-sm space-y-2 text-gray-800">
+                            <li>Resolved critical <span class="bg-neo-yellow px-1 font-bold">UI/UX bugs</span> and
+                                layout consistency issues in production.</li>
+                            <li>Worked with existing UI flows to improve app architecture and development standards.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Role 2: Konect U -->
+                <div class="reveal relative pl-8 md:pl-16">
+                    <!-- Dot -->
+                    <div class="absolute -left-[14px] top-2 w-6 h-6 bg-neo-blue border-4 border-black rounded-full">
+                    </div>
+
+                    <!-- Card -->
+                    <div
+                        class="bg-white text-black border-4 border-black p-6 shadow-hard hover:shadow-hard-xl transition-all cursor-hover group">
+                        <div
+                            class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-black pb-4 mb-4">
+                            <h3 class="text-3xl font-black uppercase">Flutter Developer</h3>
+                            <span
+                                class="font-mono font-bold bg-black text-white px-3 py-1 transform -rotate-1 shadow-hard-sm">NOV
+                                2025 - DEC 2025</span>
+                        </div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="ri-building-4-line text-xl"></i>
+                            <p class="font-mono text-xl font-bold uppercase text-neo-blue bg-black px-2 inline-block">@
+                                KONECT U (Mumbai)</p>
+                        </div>
+                        <ul class="list-disc list-inside font-mono text-sm space-y-2 text-gray-800">
+                            <li>Built <b>"ChooseApp"</b> (Cab Aggregator) integrating 10+ ride providers with real-time
+                                fare comparison.</li>
+                            <li>Implemented <span class="bg-neo-yellow px-1 font-bold">PhonePe SDK</span>, WebView
+                                OAuth, and Firebase Cloud Messaging.</li>
+                            <li>Handled production releases for both Android & iOS.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CODING STATS (DYNAMIC ARHAM STRUCTURE) -->
+    <section id="coding-stats" class="py-12 bg-neo-black text-white border-y-4 border-black relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20"
+            style="background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="flex justify-between items-center mb-6 border-b-2 border-white pb-3">
+                <h2 class="text-4xl md:text-5xl font-black uppercase text-white tracking-tight">
+                    CODING<span class="text-neo-green">_STATS</span>
+                </h2>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <p class="font-mono text-neo-green text-xs font-bold">LIVE_API</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:auto-rows-fr">
+                <!-- GitHub Column -->
+                <div class="reveal flex flex-col h-full">
+                    <div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-2">
+                        <div class="w-8 h-8 bg-neo-green border-2 border-white flex items-center justify-center">
+                            <i class="ri-github-fill text-lg text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase text-white">GITHUB</h3>
+                    </div>
+
+                    <div
+                        class="border-4 border-white/20 p-6 bg-black flex-1 flex flex-col shadow-[8px_8px_0_rgba(0,0,0,1)] relative group">
+                        <!-- Profile Header -->
+                        <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                            <div class="flex items-center gap-3">
+                                <i class="ri-github-fill text-3xl text-neo-green"></i>
+                                <div>
+                                    <h4 class="text-xl font-black text-white leading-tight">DMounas</h4>
+                                    <p class="text-[10px] font-mono text-neo-green uppercase tracking-widest">Git Matrix
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-2 gap-4 mb-8 uppercase">
+                            <div
+                                class="border-2 border-neo-green/30 bg-neo-black/60 p-4 relative group overflow-hidden hover:border-neo-green transition-colors">
+                                <div
+                                    class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">
+                                    Repositories</div>
+                                <div id="gh-repos" class="text-white font-black text-3xl tracking-tighter">--</div>
+                            </div>
+                            <div
+                                class="border-2 border-neo-green/30 bg-neo-black/60 p-4 relative group overflow-hidden hover:border-neo-green transition-colors">
+                                <div
+                                    class="text-[9px] font-mono text-neo-green mb-1 uppercase tracking-widest opacity-70">
+                                    Followers</div>
+                                <div id="gh-followers" class="text-white font-black text-3xl tracking-tighter">--</div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Graph -->
+                        <div class="flex-1 flex flex-col justify-center mb-8">
+                            <div
+                                class="bg-black border-2 border-neo-green/30 p-2 overflow-hidden hover:border-neo-green transition-colors duration-500 relative">
+                                <p class="text-[8px] font-mono text-neo-green/50 uppercase tracking-[0.2em] mb-1">
+                                    Matrix_Output</p>
+                                <img src="https://ghchart.rshah.org/33FF57/DMounas" alt="GitHub Graph"
+                                    class="w-full h-auto filter brightness-110" />
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div
+                            class="mt-auto flex items-center justify-between text-neo-green p-3 border-2 border-white/10 bg-neo-black font-mono text-[11px]">
+                            <div class="flex items-center gap-2">
+                                <span class="text-white/30">$</span>
+                                <span class="text-neo-green">git fetch origin</span>
+                                <span class="animate-pulse">_</span>
+                            </div>
+                            <a href="https://github.com/DMounas" target="_blank"
+                                class="text-neo-green px-3 py-1 font-black uppercase border border-neo-green hover:bg-neo-green hover:text-black transition-all">VISIT
+                                →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LeetCode & CodeChef Column -->
+                <div class="reveal flex flex-col h-full gap-8">
+
+                    <!-- LeetCode -->
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-2">
+                            <div class="w-8 h-8 bg-neo-orange border-2 border-white flex items-center justify-center">
+                                <i class="ri-code-box-fill text-lg text-black"></i>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase text-white">LEETCODE</h3>
+                        </div>
+
+                        <div
+                            class="border-4 border-white/20 p-6 bg-black shadow-[8px_8px_0_rgba(0,0,0,1)] relative group h-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-xl font-black text-white">vLp1PBsG1o</h4>
+                                <span class="text-neo-orange font-mono text-xs">SOLVER</span>
+                            </div>
+
+                            <!-- LeetCode Heatmap Image -->
+                            <div
+                                class="border-2 border-neo-orange/30 p-2 overflow-hidden bg-black mb-4 hover:border-neo-orange transition-colors">
+                                <img src="https://leetcard.jacoblin.cool/vLp1PBsG1o?theme=dark&font=Ubuntu&ext=heatmap"
+                                    alt="LeetCode Stats" class="w-full h-auto object-contain" />
+                            </div>
+
+                            <div class="text-right mt-auto">
+                                <a href="https://leetcode.com/u/vLp1PBsG1o/" target="_blank"
+                                    class="text-neo-orange px-3 py-1 font-black uppercase border border-neo-orange hover:bg-neo-orange hover:text-black transition-all text-xs">VIEW_LC
+                                    →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CodeChef -->
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-4 border-b border-white/20 pb-2">
+                            <div class="w-8 h-8 bg-white border-2 border-white flex items-center justify-center">
+                                <i class="ri-terminal-box-fill text-lg text-black"></i>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase text-white">CODECHEF</h3>
+                        </div>
+
+                        <div
+                            class="border-4 border-white/20 p-6 bg-black shadow-[8px_8px_0_rgba(0,0,0,1)] relative group">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xl font-black text-white">d_mounas</h4>
+                                    <p class="text-gray-500 font-mono text-xs">COMPETITIVE PROGRAMMING</p>
+                                </div>
+                                <a href="https://www.codechef.com/users/d_mounas" target="_blank"
+                                    class="text-white px-3 py-1 font-black uppercase border border-white hover:bg-white hover:text-black transition-all text-xs">VIEW_CC
+                                    →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS (TROPHY CABINET) -->
+    <section id="achievements" class="py-20 bg-white border-b-4 border-black">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2
+                class="text-5xl font-black uppercase mb-12 flex items-center gap-4 text-stroke-black drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                <i class="ri-trophy-fill text-neo-yellow text-5xl border-4 border-black p-2 shadow-hard bg-white"></i>
+                TROPHY_CABINET
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- 1. RIC IIT Guwahati (Research) -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/ric-iitg.png" alt="RIC IITG"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-purple text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                RESEARCH</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">Selected Presentation @ IIT
+                                Guwahati</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Selected for Oral Presentation at RIC 2025
+                                for "Smart Flood Detection & Traffic Management System".</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1OAbE1MKqDBWHhk9fIrfxSi_o-l8hEMTQ/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-purple transition-colors border-2 border-black">VIEW
+                            PAPER <i class="ri-external-link-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 2. IIChE IIT Patna (Finalist) -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/iiche-chemathon.png" alt="IIChE"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-red text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                FINALIST</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">Finalist @ IIChE ChEMATHON 2026
+                                | IIT Patna
+                            </h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">National Level Finalist at IIT Patna.
+                                Competed in industrial problem solving.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1Jzt_s6SjVR7-5givl5GVm2_uL-lTCzG4/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-red transition-colors border-2 border-black">VIEW
+                            CERTIFICATE <i class="ri-file-paper-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 3. RoboWar 15kg (Winner) -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/robowar-15kg.jpeg" alt="Robowar 15kg"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-orange text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                WINNER</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">Winner: RoboWar 15kg</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Tecnoesis 2026. Designed and piloted a 15kg
+                                combat robot to victory.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/118G3qc6dpi-EzdTny2dgz3pY1Y50RkL-/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-orange transition-colors border-2 border-black">CHECK
+                            PROOF <i class="ri-award-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 4. RoboWar 8kg (Runner Up) -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/robowar-8kg.jpeg" alt="Robowar 8kg"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-orange text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                RUNNER UP</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">1st Runner Up: RoboWar 8kg</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Tecnoesis 2026. High-speed tactical combat
+                                robotics.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1oZWGXWuKToP6gHbcFMfJUhoWerNvIOLR/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-orange transition-colors border-2 border-black">CHECK
+                            PROOF <i class="ri-award-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 5. SIH 2025 -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/sih-2025.png" alt="SIH"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-blue text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                NATIONAL</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">SIH 2025 Selected</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Selected at Institute Level (NIT Silchar)
+                                for Smart India Hackathon 2025.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1TUvUPtQd9gbQv4pcmM9DBNyfH-J9DGL3/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-blue transition-colors border-2 border-black">VIEW
+                            STATUS <i class="ri-government-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 6. RoboSoccer -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/robosoccer.jpeg" alt="RoboSoccer"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-orange text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                RUNNER UP</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">1st Runner Up: RoboSoccer</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Tecnoesis 2025. Manual robotics competition.
+                            </p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/15wunVnNw3ebDpqh6O7fZmIM38JUo2dzK/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-orange transition-colors border-2 border-black">VIEW
+                            CERTIFICATE <i class="ri-gamepad-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 7. UI/UX Hackathon -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/ui-ux-hackathon.jpeg" alt="UI UX"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-pink text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                DESIGN</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">2nd Runner Up: UI/UX Hackathon
+                            </h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Organized by ECS, NIT Silchar. Designed
+                                accessible interfaces.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1wM019mPVkaZEwJ-q0QAwDo3BznHK1H9P/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-pink transition-colors border-2 border-black">VIEW
+                            DESIGN <i class="ri-palette-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 8. GSSoC 2025 -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/gssoc-2025.jpg" alt="GSSoC"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-green text-black text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                OPEN SOURCE</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">GSSoC 2025 Contributor</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">GirlScript Summer of Code. Contributing to
+                                open source repositories.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1s28c8aXaGweBKpD8f2t2NBjGHHON7pA_/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-green hover:text-black transition-colors border-2 border-black">VIEW
+                            PRs <i class="ri-git-pull-request-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 9. Concept Design -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/concept-design.jpg" alt="Concept Design"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-yellow text-black text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                1ST PLACE</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">Winner: Concept Designing</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">IEEE RAS x Eco Club. Sustainable engineering
+                                design competition.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/16xg92NJfxvYqYJTY7TUFbkQf0AoqktoC/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-yellow hover:text-black transition-colors border-2 border-black">VIEW
+                            CERTIFICATE <i class="ri-medal-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 10. NERDS Quiz -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/nerds-quiz.jpg" alt="Nerds"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-gray-800 text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                QUIZ</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">Runner Up: 60sec NERDS</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Tech Trivia competition organized by NERDS
+                                NIT Silchar.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1_RrfMgaEJcg8BG0QtK4GzkdG1QDLWMgx/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-gray-700 transition-colors border-2 border-black">VIEW
+                            CERTIFICATE <i class="ri-question-answer-line"></i></a>
+                    </div>
+                </div>
+
+                <!-- 11. Treasure Hunt -->
+                <div
+                    class="flex flex-col sm:flex-row border-4 border-black p-0 shadow-hard hover:shadow-hard-xl transition-all bg-neo-white group">
+                    <div
+                        class="sm:w-1/3 bg-gray-200 border-b-4 sm:border-b-0 sm:border-r-4 border-black relative overflow-hidden h-48 sm:h-auto">
+                        <img src="assets/images/treasure-hunt.jpeg" alt="Treasure Hunt"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                    </div>
+                    <div class="sm:w-2/3 p-4 flex flex-col justify-between">
+                        <div>
+                            <div
+                                class="bg-neo-blue text-white text-[10px] font-bold px-2 inline-block border border-black mb-2">
+                                FINANCE</div>
+                            <h4 class="font-black text-xl leading-tight mb-2 uppercase">2nd Place: Treasure Hunt</h4>
+                            <p class="font-mono text-xs text-gray-600 mb-3">Finance & Investment Club NIT Silchar. Logic
+                                & financial literacy.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1HBv16Yjn9kRpMfKnTg5AZsr4CV8XGTDA/view?usp=sharing"
+                            target="_blank"
+                            class="text-xs font-bold font-mono bg-black text-white py-2 px-4 text-center hover:bg-neo-blue transition-colors border-2 border-black">VIEW
+                            CERTIFICATE <i class="ri-map-2-line"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS (SMALLER CARDS) -->
+    <section id="projects" class="py-24 px-4 bg-neo-white border-b-4 border-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-6xl font-black uppercase mb-12">SELECTED WORKS</h2>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: LeaseLens -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/leaselensai.png" alt="LeaseLens"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-blue text-white text-[10px] font-bold px-2 border border-black z-10">
+                            SAAS
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">LeaseLens AI</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">Full-stack event-driven platform utilizing Celery,
+                        Docker, and Gemini AI for real-time document auditing.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">Django</span>
+                        <span class="bg-black px-2 py-1">React</span>
+                        <span class="bg-black px-2 py-1">AWS</span>
+                        <span class="bg-black px-2 py-1">Docker</span>
+                        <span class="bg-black px-2 py-1">PostgreSQL</span>
+                        <span class="bg-black px-2 py-1">Redis</span>
+                        <span class="bg-black px-2 py-1">Gemini AI</span>
+                        <span class="bg-black px-2 py-1">TypeScript</span>
+                    </div>
+                </article>
+
+                <!-- Project 2: EcoSnap -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/images/ecosnap.jpg" alt="EcoSnap"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-pink text-white text-[10px] font-bold px-2 border border-black z-10">
+                            MOBILE
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">EcoSnap</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">AI Audit Terminal for sustainability. Features real-time
+                        scanning with ML Kit.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">Flutter</span>
+                        <span class="bg-black px-2 py-1">Supabase</span>
+                        <span class="bg-black px-2 py-1">ML</span>
+                    </div>
+                </article>
+
+                <!-- Project 3: RoboWar Bot -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/15kg.png" alt="RoboSoccer Bot"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-orange text-white text-[10px] font-bold px-2 border border-black z-10">
+                            ROBOT
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">Robowar Bot 15kg</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">Designed and built 15kg combat robot using SolidWorks,
+                        custom aluminium chassis, and high-power drive systems for Robowars competitions.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">Product Design</span>
+                        <span class="bg-black px-2 py-1">Solidworks</span>
+                        <span class="bg-black px-2 py-1">Combat Robotics</span>
+                        <span class="bg-black px-2 py-1">RC Systems</span>
+                    </div>
+                </article>
+                <!-- Project 4: RoboWar Bot -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/8kg.jpeg" alt="RoboSoccer Bot"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-orange text-white text-[10px] font-bold px-2 border border-black z-10">
+                            ROBOT
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">Robowar Bot 8kg</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">Designed and built 8kg combat robots using SolidWorks,
+                        custom aluminium chassis, and high-power drive systems for Robowars competitions.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">Product Design</span>
+                        <span class="bg-black px-2 py-1">Solidworks</span>
+                        <span class="bg-black px-2 py-1">Combat Robotics</span>
+                        <span class="bg-black px-2 py-1">RC Systems</span>
+                    </div>
+                </article>
+
+                <!-- Project 5: FPV Drone -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/drone2.png" alt="SafeCity"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-green text-black text-[10px] font-bold px-2 border border-black z-10">
+                            WINNER
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">Custom GPS Waypoint Quadcopter</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">A custom-engineered autonomous UAV built on the
+                        ArduPilot ecosystem, featuring GPS-locked stability and real-time telemetry integration.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">UAV</span>
+                        <span class="bg-black px-2 py-1">ArduPilot</span>
+                        <span class="bg-black px-2 py-1">Drone</span>
+                        <span class="bg-black px-2 py-1">FPV</span>
+                        <span class="bg-black px-2 py-1">ELRS</span>
+                    </div>
+                </article>
+
+                <!-- Project 6: RoboSoccer Bot -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/robosoccer.png" alt="RoboSoccer"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-green text-black text-[10px] font-bold px-2 border border-black z-10">
+                            WINNER
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">RoboSoccer Bot</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">Designed and built soccer robots using SolidWorks,
+                        custom aluminium chassis, and high-power drive systems for RoboSoccer Competitions.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">React</span>
+                        <span class="bg-black px-2 py-1">WebSockets</span>
+                        <span class="bg-black px-2 py-1">IOT</span>
+                    </div>
+                </article>
+
+                <!-- Project 7: Micro Mouse -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/micromouse.png" alt="MicroMouse"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-green text-black text-[10px] font-bold px-2 border border-black z-10">
+                            ALGORITHM
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">Precision Autonomous Navigator</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">Developed a self-contained Micromouse capable of
+                        autonomous mapping and single-run maze solving using high-speed laser ranging and IMU-stabilized
+                        orientation.</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">Path Planning</span>
+                        <span class="bg-black px-2 py-1">Motion Control</span>
+                        <span class="bg-black px-2 py-1">STM 32</span>
+                        <span class="bg-black px-2 py-1">PID Cotrol</span>
+                        <span class="bg-black px-2 py-1">Sensor Fusion</span>
+                    </div>
+                </article>
+                <!-- Project 8: Robotic Arm -->
+                <article
+                    class="bg-white border-4 border-black p-3 shadow-hard hover:shadow-hard-xl transition-all group h-full flex flex-col">
+                    <div class="bg-gray-200 border-2 border-black aspect-video mb-4 relative overflow-hidden">
+                        <img src="assets/otherimages/arm.png" alt="MicroMouse"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="absolute top-2 right-2 bg-neo-green text-black text-[10px] font-bold px-2 border border-black z-10">
+                            ALGORITHM
+                        </div>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase mb-2 leading-none">Robotic Arm</h4>
+                    <p class="font-mono text-xs mb-4 flex-grow">A 3D-printed PLA 4-DOF robotic arm driven by standard
+                        PWM servo motors</p>
+                    <div class="flex gap-1 flex-wrap font-mono text-[10px] font-bold text-white mt-auto">
+                        <span class="bg-black px-2 py-1">SolidWorks</span>
+                        <span class="bg-black px-2 py-1">Product Design</span>
+                        <span class="bg-black px-2 py-1">Mechatronics</span>
+                        <span class="bg-black px-2 py-1">Automation</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="py-24 px-4 bg-neo-purple border-b-4 border-black">
+        <div class="max-w-7xl mx-auto text-white">
+            <h2 class="text-5xl font-black uppercase mb-12 flex items-center gap-4">
+                <i class="ri-file-paper-2-fill"></i> RESEARCH_LOGS
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+
+                <!-- NEW PAPER (Smart Flood Detection) -->
+                <a href="https://drive.google.com/file/d/1tEecmSARxua7CC0UMsKlNU_8VvZclC_M/view?usp=sharing"
+                    target="_blank"
+                    class="block border-4 border-black bg-white text-black p-6 shadow-hard hover:shadow-hard-xl transition-all cursor-hover group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex gap-2 mb-2">
+                                <span
+                                    class="bg-neo-purple text-white px-2 py-1 font-mono text-xs font-bold border border-black inline-block">PUBLICATION</span>
+                                <span
+                                    class="bg-yellow-400 text-black px-2 py-1 font-mono text-xs font-bold border border-black inline-block">IoT
+                                    & ML</span>
+                            </div>
+                            <h3 class="text-2xl font-black uppercase group-hover:text-neo-purple transition-colors">
+                                Smart Flood Detection & Traffic Management System
+                            </h3>
+                            <p class="font-mono text-sm mt-2 font-bold text-gray-800">
+                                An IoT and Machine Learning Approach for Urban Resilience
+                            </p>
+                            <p class="font-mono text-sm mt-2 text-gray-600">
+                                Developed a solar-powered framework fusing LoRaWAN water-level sensing with XGBoost/LSTM
+                                models to provide probabilistic flood forecasts and automated traffic rerouting.
+                            </p>
+                        </div>
+                        <!-- Icon changes on hover for effect -->
+                        <i class="ri-file-pdf-2-fill text-3xl group-hover:scale-110 transition-transform"></i>
+                    </div>
+                </a>
+
+                <!-- OLD PAPER (Deep Learning) -->
+                <div
+                    class="border-4 border-black bg-white text-black p-6 shadow-hard hover:shadow-hard-xl transition-all cursor-hover">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span
+                                class="bg-neo-purple text-white px-2 py-1 font-mono text-xs font-bold border border-black mb-2 inline-block">ONGOING
+                                RESEARCH</span>
+                            <h3 class="text-2xl font-black uppercase">Deep Learning in Autonomous Navigation</h3>
+                            <p class="font-mono text-sm mt-2">Authoring a paper on vision-based SLAM for low-cost
+                                microcontrollers.</p>
+                        </div>
+                        <i class="ri-arrow-right-up-line text-2xl"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNICATION HUB -->
+    <section id="contact" class="py-24 px-4 bg-neo-blue border-t-4 border-black">
+        <div class="max-w-7xl mx-auto">
+
+            <h2
+                class="text-5xl md:text-7xl font-black uppercase mb-12 text-white text-stroke-black drop-shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                ESTABLISH_UPLINK
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- LEFT: TRANSMISSION FORM -->
+                <div class="bg-white border-4 border-black p-8 shadow-hard-xl relative">
+                    <div
+                        class="absolute -top-5 -left-5 bg-neo-yellow border-4 border-black px-4 py-1 transform -rotate-2">
+                        <span class="font-mono font-bold text-sm">/// MESSAGE_PROTOCOL</span>
+                    </div>
+
+                    <form class="space-y-6 mt-4">
+                        <div class="space-y-2">
+                            <label
+                                class="font-mono font-bold text-xs uppercase bg-black text-white px-2 py-1 inline-block">SENDER_ID</label>
+                            <input type="text" placeholder="ENTER NAME"
+                                class="w-full bg-gray-100 border-4 border-black p-4 font-bold focus:bg-neo-yellow focus:shadow-hard-sm outline-none transition-all placeholder:text-gray-400 font-mono">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label
+                                class="font-mono font-bold text-xs uppercase bg-black text-white px-2 py-1 inline-block">RETURN_ADDRESS</label>
+                            <input type="email" placeholder="ENTER EMAIL"
+                                class="w-full bg-gray-100 border-4 border-black p-4 font-bold focus:bg-neo-yellow focus:shadow-hard-sm outline-none transition-all placeholder:text-gray-400 font-mono">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label
+                                class="font-mono font-bold text-xs uppercase bg-black text-white px-2 py-1 inline-block">DATA_PACKET</label>
+                            <textarea rows="5" placeholder="TYPE MESSAGE..."
+                                class="w-full bg-gray-100 border-4 border-black p-4 font-bold focus:bg-neo-yellow focus:shadow-hard-sm outline-none transition-all placeholder:text-gray-400 font-mono resize-none"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-black text-white font-black text-xl py-4 border-4 border-transparent hover:bg-white hover:text-black hover:border-black hover:shadow-hard transition-all cursor-hover uppercase">
+                            <i class="ri-send-plane-fill mr-2"></i> Transmit
+                        </button>
+                    </form>
+                </div>
+
+                <!-- RIGHT: SOCIAL GRID -->
+                <div class="flex flex-col gap-8">
+
+                    <!-- Info Block -->
+                    <div class="bg-neo-black text-white border-4 border-white p-8 shadow-hard">
+                        <h3 class="font-mono text-neo-green text-xl mb-4">/// STATUS: ONLINE</h3>
+                        <p class="font-mono text-sm leading-relaxed opacity-80 mb-6">
+                            Currently open for SDE Internships and collaborative research projects.
+                            Based in Silchar, India. Available for remote work worldwide.
+                        </p>
+                        <div class="font-mono text-lg font-bold border-t border-gray-700 pt-4">
+                            <a href="mailto:debangshumounas.dev@gmail.com"
+                                class="hover:text-neo-yellow transition-colors flex items-center gap-2">
+                                <i class="ri-mail-send-line"></i> debangshumounas.dev@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Socials Grid -->
+                    <div class="bg-neo-white border-4 border-black p-8 shadow-hard relative">
+                        <div
+                            class="absolute -top-5 -right-5 bg-neo-pink border-4 border-black px-4 py-1 transform rotate-2">
+                            <span class="font-mono font-bold text-white text-sm">/// SOCIAL_NET</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                            <!-- GitHub -->
+                            <a href="https://github.com/DMounas" target="_blank"
+                                class="flex flex-col items-center justify-center p-4 border-2 border-black bg-white hover:bg-black hover:text-white transition-all cursor-hover group shadow-hard-sm hover:translate-y-1 hover:shadow-none">
+                                <i class="ri-github-fill text-3xl mb-1"></i>
+                                <span class="font-mono text-xs font-bold">GITHUB</span>
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/in/debangshu-mounas-3b273b317/" target="_blank"
+                                class="flex flex-col items-center justify-center p-4 border-2 border-black bg-white hover:bg-[#0077b5] hover:text-white transition-all cursor-hover group shadow-hard-sm hover:translate-y-1 hover:shadow-none">
+                                <i class="ri-linkedin-fill text-3xl mb-1"></i>
+                                <span class="font-mono text-xs font-bold">LINKEDIN</span>
+                            </a>
+
+                            <!-- X (Twitter) -->
+                            <a href="https://x.com/_d_mounas_" target="_blank"
+                                class="flex flex-col items-center justify-center p-4 border-2 border-black bg-white hover:bg-black hover:text-white transition-all cursor-hover group shadow-hard-sm hover:translate-y-1 hover:shadow-none">
+                                <i class="ri-twitter-x-fill text-3xl mb-1"></i>
+                                <span class="font-mono text-xs font-bold">X / TWITTER</span>
+                            </a>
+
+                            <!-- Discord -->
+                            <a href="#" target="_blank"
+                                class="flex flex-col items-center justify-center p-4 border-2 border-black bg-white hover:bg-[#5865F2] hover:text-white transition-all cursor-hover group shadow-hard-sm hover:translate-y-1 hover:shadow-none">
+                                <i class="ri-discord-fill text-3xl mb-1"></i>
+                                <span class="font-mono text-xs font-bold">DISCORD</span>
+                            </a>
+
+                            <!-- Instagram -->
+                            <a href="https://www.instagram.com/_d_mounas_/profilecard/" target="_blank"
+                                class="flex flex-col items-center justify-center p-4 border-2 border-black bg-white hover:bg-[#E4405F] hover:text-white transition-all cursor-hover group shadow-hard-sm hover:translate-y-1 hover:shadow-none">
+                                <i class="ri-instagram-fill text-3xl mb-1"></i>
+                                <span class="font-mono text-xs font-bold">INSTAGRAM</span>
+                            </a>
+
+                            <!-- Facebook -->
+                            <a href="#" target="_blank"
+                                class="flex flex-col items-center justify-center p-4 border-2 border-black bg-white hover:bg-[#1877F2] hover:text-white transition-all cursor-hover group shadow-hard-sm hover:translate-y-1 hover:shadow-none">
+                                <i class="ri-facebook-fill text-3xl mb-1"></i>
+                                <span class="font-mono text-xs font-bold">FACEBOOK</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-8 border-t-8 border-neo-green font-mono">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-left">
+                <p class="font-bold text-lg">DEBANGSHU MOUNAS</p>
+                <p class="text-xs text-gray-500">NIT SILCHAR // INDIA</p>
+            </div>
+
+            <div class="text-right">
+                <p class="text-xs text-gray-500">© 2026 // ALL RIGHTS RESERVED</p>
+                <p class="text-[10px] text-gray-600 uppercase">Built with Code & Caffeine</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-12 px-4 border-t-8 border-neo-blue font-mono text-center">
+        <p class="mb-4">© 2026 DEBANGSHU MOUNAS</p>
+        <p class="text-xs text-gray-500">BUILT WITH RAW HTML & TAILWIND // NO TRACKERS</p>
+    </footer>
+
+    <script>
+        // GitHub API Fetcher
+        async function fetchGitHubStats() {
+            try {
+                const response = await fetch('https://api.github.com/users/DMounas');
+                const data = await response.json();
+
+                if (data) {
+                    const repoCount = document.getElementById('gh-repos');
+                    const followerCount = document.getElementById('gh-followers');
+
+                    if (repoCount) repoCount.innerText = data.public_repos;
+                    if (followerCount) followerCount.innerText = data.followers;
+                }
+            } catch (error) {
+                console.log('GitHub Fetch Error', error);
+            }
+        }
+
+        fetchGitHubStats();
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const hoverElements = document.querySelectorAll('.cursor-hover, a, button, input, textarea');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.transform = `translate(-50%, -50%)`;
+        });
+
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '60px';
+                cursor.style.height = '60px';
+                cursor.style.backgroundColor = '#FBFF48';
+                cursor.style.mixBlendMode = 'normal';
+                cursor.style.border = '2px solid black';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '24px';
+                cursor.style.height = '24px';
+                cursor.style.backgroundColor = '#fff';
+                cursor.style.mixBlendMode = 'difference';
+                cursor.style.border = 'none';
+            });
+        });
+
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Progress Bar
+        window.onscroll = function () {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+
+</html>
